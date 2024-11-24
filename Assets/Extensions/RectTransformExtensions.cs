@@ -37,4 +37,26 @@ public static class RectTransformExtensions
 
     //====================================================================================================
     //====================================================================================================
+
+    /// <summary>
+    /// Changes Pivot of UI Object, and hold object in place (does not having the object moving, position values changes to achive this)
+    /// 
+    /// Context:
+    /// In Unity Inspector, while changing pivot, it also automatically changes the position accordingly so that the object stays in place while pivot changes
+    /// In Unity Inspector Debug mode, changing the pivot does not change the position, hence the object will move.
+    /// Changing Pivot in script is the same as Unity Inspector Debug Mode.
+    /// </summary>
+    public static void ChangePivotAndHold(this RectTransform rt, Vector2 newPivot)
+    {
+        var oldPivot = rt.pivot;
+
+        rt.pivot = newPivot;
+
+        var pivotDiff = newPivot - oldPivot;
+        var offset = pivotDiff * (rt.rect.size * rt.localScale);
+
+        rt.anchoredPosition += offset;
+    }
+
+    //====================================================================================================
 }
