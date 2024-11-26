@@ -1,20 +1,20 @@
 /// <summary>
 /// About:
-/// Simple Script to have click drag of 3d game objects in scene.
-/// This method moves the object left/right/up/down based on the objects perspective to the camera
+/// Simple Script to have mousewheel to have the current camera fly towards a target 3d gameobject over the mouse
+/// This method uses unity's event system for raycast
 /// 
 /// How To Use:
 /// Add this script to 3d gameobject that has a collider component
 /// Ensure EventSystem + Standalone Input Module is in the scene
 /// 
 /// Notes:
-/// This version uses Unity Event System and StandaloneInputModule
+/// 3D GameObject needs to have a collider for raycast to work
 /// </summary>
 
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CamFlyZoom3 : MonoBehaviour, IScrollHandler
+public class CamFlyZoom2 : MonoBehaviour, IScrollHandler
 {
     public float zoomSpeed = 0.05f;
 

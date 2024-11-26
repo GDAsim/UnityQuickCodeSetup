@@ -1,5 +1,13 @@
 /// <summary>
-/// Zoom in on 3d object raycasted by camera
+/// About:
+/// Simple Script to have mousewheel to have the current camera fly towards a target 3d gameobject over the mouse
+/// This method uses Physics.Raycast manually 
+/// 
+/// How To Use:
+/// Add this script to a camera gameobject
+/// 
+/// Notes:
+/// 3D GameObject needs to have a collider for raycast to work
 /// </summary>
 
 using UnityEngine;
