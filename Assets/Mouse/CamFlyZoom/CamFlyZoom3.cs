@@ -14,22 +14,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop3 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CamFlyZoom3 : MonoBehaviour, IScrollHandler
 {
-    Vector3 startDragPos;
+    public float zoomSpeed = 0.05f;
 
-    public void OnBeginDrag(PointerEventData eventData)
+    void IScrollHandler.OnScroll(PointerEventData eventData)
     {
-        startDragPos = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - startDragPos);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-
+        var targetPos = eventData.pointerCurrentRaycast.worldPosition;
+        Vector3 move = eventData.scrollDelta.y * zoomSpeed * (targetPos - Camera.main.transform.position);
+        Camera.main.transform.position += move;
     }
 }

@@ -1,8 +1,17 @@
+/// <summary>
+/// About:
+/// Simple Script to have click drag of 3d game objects in scene.
+/// This method moves the object left/right/up/down based on the objects perspective to the camera
+/// 
+/// How To Use:
+/// Add this script to an empty gameobject in scene
+/// 
+/// Notes:
+/// This version does not keep track of dragging state
+/// </summary>
+
 using UnityEngine;
 
-// Simple Script to have click drag of 3d game objects in scene,
-// This method moves the object left/right/up/down based on the objects perspective to the camera
-// Usage: Add this script to an empty gameobject in scene
 public class DragDrop2 : MonoBehaviour
 {
     Transform draggingGO;
