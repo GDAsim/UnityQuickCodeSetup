@@ -1,1 +1,2 @@
-I store all my Quick Reusable Code that i foresee possible uses in the future
+# UnityQuickCodeSetup
+I keep Quick Reusable Scene Assets & Scripts that are highly reusable for quick setup of future unity projects
