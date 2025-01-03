@@ -28,7 +28,8 @@ namespace UnityEngine.UI.Extensions
             get { return isTransferable; }
             set 
             {
-                _canvasGroup = gameObject.GetOrAddComponent<CanvasGroup>();
+                _canvasGroup = gameObject.GetComponent<CanvasGroup>();
+                if (!_canvasGroup) _canvasGroup = gameObject.AddComponent<CanvasGroup>();
                 _canvasGroup.blocksRaycasts = value;
                 isTransferable = value; 
             }
@@ -61,7 +62,13 @@ namespace UnityEngine.UI.Extensions
         #region IBeginDragHandler Members
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (!_canvasGroup) { _canvasGroup = gameObject.GetOrAddComponent<CanvasGroup>(); }
+            if (!_canvasGroup) 
+            { 
+                _canvasGroup = gameObject.GetComponent<CanvasGroup>();
+                if (!_canvasGroup) _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+            }
+
             _canvasGroup.blocksRaycasts = false;
             isValid = true;
             if (_reorderableList == null)
@@ -537,7 +544,9 @@ namespace UnityEngine.UI.Extensions
         {
             _reorderableList = reorderableList;
             _rect = GetComponent<RectTransform>();
-            _canvasGroup = gameObject.GetOrAddComponent<CanvasGroup>();
+            _canvasGroup = gameObject.GetComponent<CanvasGroup>();
+            if (!_canvasGroup) _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
         }
     }
 }
