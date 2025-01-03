@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine.Events;
 
-/// <summary> https://github.com/DenchiSoft/UnityAspectRatioController/tree/master
+/// <summary>
 /// This script enforces the set aspect ratio for the Unity game window. That means that you can resize the window but
 /// it will always keep the aspect ratio you set.
 /// 
