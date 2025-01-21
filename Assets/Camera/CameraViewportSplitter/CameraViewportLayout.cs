@@ -17,7 +17,7 @@ public class CameraViewportLayout : MonoBehaviour
     {
         for (int i = 0; i < cameraGos.Length; i++)
         {
-            if (cameraGos[i].TryGetComponent<CameraViewportSplitter>(out CameraViewportSplitter splitter));
+            if (cameraGos[i].TryGetComponent<CameraViewportSplitter>(out CameraViewportSplitter splitter)) { }
             else splitter = cameraGos[i].AddComponent<CameraViewportSplitter>();
 
             splitter.NumOfCols = ColNum;
