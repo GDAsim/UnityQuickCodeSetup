@@ -1,5 +1,13 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// About:
+/// Script to Update Camera Viewport Rect based on a Grid Arrangement
+/// 
+/// How To Use:
+/// Attach this script to a Camera
+/// Adjust variables as needed
+/// </summary>
 [ExecuteInEditMode]
 [RequireComponent (typeof(Camera))]
 public class CameraViewportSplitter : MonoBehaviour
@@ -11,6 +19,8 @@ public class CameraViewportSplitter : MonoBehaviour
 
     public Color FontColor = Color.white;
     public int FontSize = 256;
+
+    public bool DrawText = true;
 
     public void OnValidate()
     {
@@ -38,7 +48,10 @@ public class CameraViewportSplitter : MonoBehaviour
         GetComponent<Camera>().rect = rect;
     }
 
-    void OnGUI() => DrawGUIText();
+    void OnGUI()
+    {
+        if(DrawText) DrawGUIText();
+    }
 
     void DrawGUIText()
     {

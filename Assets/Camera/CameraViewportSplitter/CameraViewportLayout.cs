@@ -1,7 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-/// Create a
+/// About:
+/// Setup a list of Camera as a GridLayout Split Screen 
+/// 
+/// How To Use:
+/// Attach this script to a GameObject
+/// Assign Camera GameObjects
+/// 
 /// </summary>
 public class CameraViewportLayout : MonoBehaviour
 {
@@ -17,7 +23,7 @@ public class CameraViewportLayout : MonoBehaviour
     {
         for (int i = 0; i < cameraGos.Length; i++)
         {
-            if (cameraGos[i].TryGetComponent<CameraViewportSplitter>(out CameraViewportSplitter splitter)) { }
+            if (cameraGos[i].TryGetComponent(out CameraViewportSplitter splitter)) { }
             else splitter = cameraGos[i].AddComponent<CameraViewportSplitter>();
 
             splitter.NumOfCols = ColNum;
@@ -31,5 +37,4 @@ public class CameraViewportLayout : MonoBehaviour
             splitter.OnValidate();
         }
     }
-   
 }
