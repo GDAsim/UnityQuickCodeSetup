@@ -71,14 +71,24 @@ public static class GizmoUtilities
 
         Gizmos.color = currentColor;
     }
-    public static void DrawFrustum(Vector3 center, float fov, float maxRange, float minRange, float aspect, Color color)
+    public static void DrawFrustum(Vector3 center,Quaternion rotation, float fov, float maxRange, float minRange, float aspect, Color color)
     {
         Color currentColor = Gizmos.color;
         Gizmos.color = color;
 
-        Gizmos.DrawFrustum(center, fov, maxRange, minRange, aspect);
+        var pos = center;
+        var rot = Quaternion.identity;
+        var scale = Vector3.one;
+
+        var prev = Gizmos.matrix;
+
+        Gizmos.matrix = Matrix4x4.TRS(pos, rotation, scale);
+
+        Gizmos.DrawFrustum(Vector3.zero, fov, maxRange, minRange, aspect);
 
         Gizmos.color = currentColor;
+
+        Gizmos.matrix = prev;
     }
     public static void DrawIcon(Vector3 center, string name, Color color)
     {
@@ -372,6 +382,29 @@ public static class GizmoUtilities
         Gizmos.color = currentColor;
     }
     public static void DrawArrow(Vector3 position, Vector3 direction, Color color)
+    {
+        Color currentColor = Gizmos.color;
+        Gizmos.color = color;
+
+
+        Gizmos.DrawRay(position, direction);
+
+        float headLength = Vector3.Distance(position, position + direction) / 3;
+
+        Vector3 up = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 15, 0) * Vector3.back;
+        Vector3 down = Quaternion.LookRotation(direction) * Quaternion.Euler(0, -15, 0) * Vector3.back;
+        Vector3 left = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 0, 0) * Vector3.back;
+        Vector3 right = Quaternion.LookRotation(direction) * Quaternion.Euler(15, 0, 0) * Vector3.back;
+
+        Gizmos.DrawRay(position + direction, right * headLength);
+        Gizmos.DrawRay(position + direction, left * headLength);
+        Gizmos.DrawRay(position + direction, up * headLength);
+        Gizmos.DrawRay(position + direction, down * headLength);
+
+
+        Gizmos.color = currentColor;
+    }
+    public static void DrawConeArrow(Vector3 position, Vector3 direction, Color color)
     {
         Color currentColor = Gizmos.color;
         Gizmos.color = color;
