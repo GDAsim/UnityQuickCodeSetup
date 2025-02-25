@@ -1,26 +1,38 @@
+using System.IO;
 using UnityEditor;
-using UnityEngine;  
+using UnityEngine;
 
 public class UnitySceneScreenShot
 {
-//TODO
+    // TOUPDATE
+    public static int ScreenshotSize = 1;
+    public static string ScreenshotName = "Screenshot.png";
+
+    // TODO
 #if UNITY_STANDALONE || UNITY_WEBPLAYER
 #elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 #endif
 
-    [MenuItem("Utilities/Unity/Take Scene Screen Shot")]
-    public static void TakeScreenShot()
+    [MenuItem("Utilities/Unity/Screenshot/Take Game Screenshot #p")]
+    public static void TakeGameScreenShot()
     {
-        //The name of your Screenshot
-        string screenshotName = "Screenshot.png";
-        
-        //Generate a Unique Asset Name each time so we can create many photos. Eg. Screenshot1.png,Screenshot2.png
-        screenshotName = AssetDatabase.GenerateUniqueAssetPath("Assets/" + screenshotName).Remove(0, 6);//Remove the "Assets" word
+        string ScreenshotPath = string.Empty;
 
-        //Using Absolute Path because of Windows security not able to use reletive path
-        string absolutePath = Application.dataPath;
-        ScreenCapture.CaptureScreenshot(absolutePath + screenshotName);
+#if UNITY_EDITOR
+        ScreenshotPath = Application.dataPath;
+#endif
 
-        Debug.Log(string.Format("Screenshot Saved : {0}", absolutePath + screenshotName));
+        var path = Path.Combine(ScreenshotPath, ScreenshotName);
+
+        path = FileUtilities.GetUniqueFilePath_AppendNumber(path);
+
+        // Cant Take a Screenshot if game is not focused
+        if (!UnityWindow.IsGameWindowFocused()) UnityWindow.OpenGameWindow();
+
+        ScreenCapture.CaptureScreenshot(path);
+
+        AssetDatabase.Refresh();
+
+        Debug.Log(string.Format("Screenshot Saved : {0}", path));
     }
 }

@@ -91,4 +91,23 @@ public static class FileUtilities
 
     //====================================================================================================
     //====================================================================================================
+
+    public static string GetUniqueFilePath_AppendNumber(string path)
+    {
+        if (!File.Exists(path)) return path;
+
+        var directory = Path.GetDirectoryName(path);
+        var fileName = Path.GetFileNameWithoutExtension(path);
+        var extension = Path.GetExtension(path);
+
+        int count = 0;
+        string newPath;
+        do
+        {
+            newPath = Path.Combine(directory, fileName + ++count + extension);
+        }
+        while (File.Exists(newPath));
+
+        return newPath;
+    }
 }
