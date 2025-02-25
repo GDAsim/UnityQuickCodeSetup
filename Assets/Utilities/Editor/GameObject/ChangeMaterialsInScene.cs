@@ -12,7 +12,7 @@ public class ChangeMaterialsInScene : EditorWindow
     [MenuItem("Utilities/GameObject/Change Selected Object Material")]
     static void Init()
     {
-        EditorWindow.GetWindow(typeof(ChangeMaterialsInScene));
+        GetWindow(typeof(ChangeMaterialsInScene));
     }
     void Update()
     {
