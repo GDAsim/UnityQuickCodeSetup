@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateInterval: 0.5
-  Size: 60
+  Size: 24
   FpsColor: {r: 1, g: 0, b: 0, a: 1}
   FpsAnchor: 2
 --- !u!4 &61521857
@@ -339,8 +339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateInterval: 0.5
-  Size: 60
-  FpsColor: {r: 1, g: 0, b: 0, a: 1}
+  Size: 24
+  FpsColor: {r: 0.13231826, g: 1, b: 0, a: 1}
   FpsAnchor: 0
 --- !u!4 &1434003772
 Transform:

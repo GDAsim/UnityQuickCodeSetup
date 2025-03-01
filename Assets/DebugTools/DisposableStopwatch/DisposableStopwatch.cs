@@ -1,6 +1,6 @@
 /// <summary>
 /// About:
-/// Provides a Quick Simple Method to quickly measure a void function / Action execution time 
+/// Provides a Quick Method to quickly measure a void function / Action execution time 
 /// 
 /// How To Use:
 /// 

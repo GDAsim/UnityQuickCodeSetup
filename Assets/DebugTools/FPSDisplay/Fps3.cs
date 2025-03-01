@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /// <summary>
 /// About:
@@ -11,7 +11,7 @@
 /// Uses OnGUI to draw
 /// </summary>
 [ExecuteInEditMode]
-public class Fps2 : MonoBehaviour
+public class Fps3 : MonoBehaviour
 {
     public float updateInterval = 0.5f;
 
@@ -20,17 +20,28 @@ public class Fps2 : MonoBehaviour
     [SerializeField] TextAnchor FpsAnchor = TextAnchor.UpperRight;
 
     float timer;
-    float frameDeltaTime;
+    float framestimeLapsed;
+    int framesLapsed;
+
+    float fps;
+    float ms;
 
     void Update()
     {
         timer += Time.deltaTime;
 
+        framestimeLapsed += Time.timeScale / Time.deltaTime;
+        framesLapsed++;
+
         if (timer > updateInterval)
         {
             timer -= updateInterval;
 
-            frameDeltaTime += (Time.deltaTime - frameDeltaTime) * 0.1f;
+            fps = (framestimeLapsed / framesLapsed);
+            ms = 1000 / fps;
+
+            framestimeLapsed = 0.0f;
+            framesLapsed = 0;
         }
     }
 
@@ -46,10 +57,6 @@ public class Fps2 : MonoBehaviour
         fpsstyle.fontSize = Size;
         fpsstyle.normal.textColor = FpsColor;
         fpsstyle.fontStyle = FontStyle.Bold;
-
-        //Calculate
-        var fps = 1.0f / frameDeltaTime;
-        var ms = frameDeltaTime * 1000.0f;
 
         string fpsText = string.Format("{0:f2} fps ({1:f1} ms)", fps, ms);
         GUI.Label(fpsrect, fpsText, fpsstyle);

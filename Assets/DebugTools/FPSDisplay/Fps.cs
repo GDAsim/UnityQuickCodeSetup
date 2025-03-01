@@ -1,9 +1,11 @@
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
+/// About:
+/// FPS display
+/// 
 /// How To Use:
-/// Just Attach This To A GameObject
+/// Attach this to a GameObject
 /// 
 /// Note:
 /// Uses OnGUI to draw
@@ -24,7 +26,7 @@ public class Fps : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > updateInterval)
+        if (timer > updateInterval)
         {
             timer -= updateInterval;
 
@@ -37,11 +39,13 @@ public class Fps : MonoBehaviour
         int width = Screen.width;
         int height = Screen.height;
 
-        GUIStyle fpsstyle = new GUIStyle();
-        Rect fpsrect = new Rect(0, 0, width, height);
+        Rect fpsrect = new(0, 0, width, height);
+
+        GUIStyle fpsstyle = new();
         fpsstyle.alignment = FpsAnchor;
         fpsstyle.fontSize = Size;
         fpsstyle.normal.textColor = FpsColor;
+        fpsstyle.fontStyle = FontStyle.Bold;
 
         //Calculate
         var fps = 1.0f / frameDeltaTime;
