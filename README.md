@@ -5,11 +5,20 @@ I keep Quick Reusable Scene Assets & Scripts that are highly reusable for quick 
 
 <details>
   <summary>CameraObjectFitter</summary>
+  
   Script to fit Object to Camera regardless of size
+
+  <img src="../images/Assets/Camera/CameraObjectFitter/CameraObjectFitter.gif" width="512">
+  
 </details>
 
 <details>
+  
   <summary>CameraViewportSplitter</summary>
+  
   Script to update Camera Viewport Rect based on a Grid Input
+
+  <img src="../images/Assets/Camera/CameraViewportSplitter/CameraViewportSplitter.png" width="512">
+  
 </details>
 
