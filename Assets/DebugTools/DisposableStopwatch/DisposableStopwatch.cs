@@ -1,25 +1,21 @@
-/// <summary>
-/// About:
-/// Provides a Quick Method to quickly measure a void function / Action execution time 
-/// 
-/// How To Use:
-/// 
-/// Method 1:
-/*
-    using (new DisposableStopwatch(timespan => Debug.Log($"{timespan} elapsed"))) 
-    {
-        func()
-    }
-*/
-
-/// Method 2:
-/*
-    DisposableStopwatch.Time(() => { func() }, 100000);
-*/
-/// 
-/// Reference:
-/// https://stackoverflow.com/questions/232848/wrapping-stopwatch-timing-with-a-delegate-or-lambda
-/// </summary>
+/* 
+ * About:
+ * Provides a Quick Method to quickly measure a void function / Action execution time
+ * 
+ * How To Use:
+ * 
+ * Method 1
+ * using (new DisposableStopwatch(timespan => Debug.Log($"{timespan} elapsed")))
+ * {
+ *      func()
+ * }
+ * 
+ * Method 2:
+ * DisposableStopwatch.Time(() => { func() }, 100000);
+ * 
+ * References:
+ * https://stackoverflow.com/questions/232848/wrapping-stopwatch-timing-with-a-delegate-or-lambda
+ */
 
 using System;
 using System.Diagnostics;

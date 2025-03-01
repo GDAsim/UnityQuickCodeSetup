@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿/* 
+ * About:
+ * FPS display
+ * 
+ * How To Use:
+ * Attach this to a GameObject
+ * 
+ * Note::
+ * Uses OnGUI to draw
+ */
 
-/// <summary>
-/// About:
-/// FPS display
-/// 
-/// How To Use:
-/// Attach this to a GameObject
-/// 
-/// Note:
-/// Uses OnGUI to draw
-/// </summary>
+using UnityEngine;
+
 [ExecuteInEditMode]
 public class Fps2 : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class Fps2 : MonoBehaviour
         fpsstyle.normal.textColor = FpsColor;
         fpsstyle.fontStyle = FontStyle.Bold;
 
-        //Calculate
+        // Calculate
         var fps = 1.0f / frameDeltaTime;
         var ms = frameDeltaTime * 1000.0f;
 

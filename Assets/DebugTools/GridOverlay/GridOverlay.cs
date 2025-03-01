@@ -1,3 +1,7 @@
+
+
+using UnityEngine;
+
 /// <summary>
 /// About:
 /// Simple script to draw Grid on Scene in play mode
@@ -11,8 +15,6 @@
 /// Reference:
 /// https://docs.unity3d.com/ScriptReference/GL.html
 /// </summary>
-
-using UnityEngine;
 
 public class GridOverlay : MonoBehaviour
 {

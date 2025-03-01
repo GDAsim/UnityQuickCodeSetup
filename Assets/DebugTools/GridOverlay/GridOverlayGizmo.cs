@@ -1,5 +1,4 @@
-﻿
-/// <summary>
+﻿/// <summary>
 /// About:
 /// Simple script to draw Grid in Scene
 /// 

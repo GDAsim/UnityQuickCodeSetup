@@ -1,15 +1,16 @@
+/* 
+ * About:
+ * FPS display
+ * 
+ * How To Use:
+ * Attach this to a GameObject
+ * 
+ * Note::
+ * Uses OnGUI to draw
+ */
+
 using UnityEngine;
 
-/// <summary>
-/// About:
-/// FPS display
-/// 
-/// How To Use:
-/// Attach this to a GameObject
-/// 
-/// Note:
-/// Uses OnGUI to draw
-/// </summary>
 [ExecuteInEditMode]
 public class Fps3 : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class Fps3 : MonoBehaviour
         {
             timer -= updateInterval;
 
+            // Calculate
             fps = (framestimeLapsed / framesLapsed);
             ms = 1000 / fps;
 

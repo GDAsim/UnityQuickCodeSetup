@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿/* 
+ * About:
+ * Script to Update Camera Viewport Rect based on a Grid Arrangement Input
+ * 
+ * How To Use:
+ * 1. Attach this script to a Camera
+ * 2. Adjust variables as needed
+ */
 
-/// <summary>
-/// About:
-/// Script to Update Camera Viewport Rect based on a Grid Arrangement Input <br/>
-/// 
-/// How To Use: <br/>
-/// 1. Attach this script to a Camera <br/>
-/// 2. Adjust variables as needed <br/>
-/// </summary>
+using UnityEngine;
+
 [ExecuteInEditMode]
 [RequireComponent (typeof(Camera))]
 public class CameraViewportSplitter : MonoBehaviour
