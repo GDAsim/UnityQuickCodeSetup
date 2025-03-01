@@ -14,16 +14,18 @@ public static class ComponentExtentions
     public static T CopyComponent<T>(this Component comp, T other) where T : Component
     {
         Type type = comp.GetType();
-        if (type != other.GetType()) return null; // type mis-match
+
+        if (type != other.GetType()) return null;
+
         BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Default;
-        PropertyInfo[] pinfos = type.GetProperties(flags);
-        foreach (var pinfo in pinfos)
+        PropertyInfo[] infos = type.GetProperties(flags);
+        foreach (var info in infos)
         {
-            if (pinfo.CanWrite)
+            if (info.CanWrite)
             {
                 try
                 {
-                    pinfo.SetValue(comp, pinfo.GetValue(other, null), null);
+                    info.SetValue(comp, info.GetValue(other, null), null);
                 }
                 catch { } // In case of NotImplementedException being thrown. For some reason specifying that exception didn't seem to catch it, so I didn't catch anything specific.
             }

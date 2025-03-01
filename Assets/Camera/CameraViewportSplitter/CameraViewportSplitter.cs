@@ -2,11 +2,11 @@
 
 /// <summary>
 /// About:
-/// Script to Update Camera Viewport Rect based on a Grid Arrangement
+/// Script to Update Camera Viewport Rect based on a Grid Arrangement Input <br/>
 /// 
-/// How To Use:
-/// Attach this script to a Camera
-/// Adjust variables as needed
+/// How To Use: <br/>
+/// 1. Attach this script to a Camera <br/>
+/// 2. Adjust variables as needed <br/>
 /// </summary>
 [ExecuteInEditMode]
 [RequireComponent (typeof(Camera))]
@@ -24,7 +24,6 @@ public class CameraViewportSplitter : MonoBehaviour
 
     public void OnValidate()
     {
-        // Clamp
         NumOfCols = NumOfCols < 1 ? 1 : NumOfCols;
         NumOfRows = NumOfRows < 1 ? 1 : NumOfRows;
         CurrentCol = Mathf.Clamp(CurrentCol, 0, NumOfCols - 1);

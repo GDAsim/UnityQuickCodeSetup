@@ -3,21 +3,22 @@ using UnityEngine;
 public static class CameraObjectFitter
 {
     /// <summary>
-    /// Fit Object to Camera using Bounds
+    /// Fit Object Within Camera using Bounds <br/>
     /// Note: Bounds is Axis-Aligned
-    public static void FitObjectToCamera(GameObject gameobject, Camera cam, float fitFactor)
+    /// </summary>
+    public static void FitObjectWithinCamera(GameObject gameobject, Camera cam, float fitFactor)
     {
-        // Get Object Bounds - Including Childrens - Uses Collider first, else Renderer
-        Bounds? boundsnullable = gameobject.GetTotalAnyBounds();
-        if (!boundsnullable.HasValue) return;
-        var bounds = boundsnullable.Value;
+        // Get Object Bounds - Including Children
+        Bounds? nullableBounds = gameobject.GetTotalAnyBounds();
+        if (!nullableBounds.HasValue) return;
+        var bounds = nullableBounds.Value;
 
-        float size = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+        var maxSize = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
 
-        float cameraView = 2 * Mathf.Tan(0.5f * Mathf.Deg2Rad * cam.fieldOfView);
-        float distance = fitFactor * size / cameraView;
+        var cameraView = 2 * Mathf.Tan(0.5f * Mathf.Deg2Rad * cam.fieldOfView);
+        var distance = fitFactor * maxSize / cameraView;
 
-        distance += 0.5f * size;
+        distance += 0.5f * maxSize;
 
         // Update GameObject
         var dir = cam.transform.forward;
@@ -26,21 +27,22 @@ public static class CameraObjectFitter
     }
 
     /// <summary>
-    /// Fit Camera to Object using Bounds
+    /// Fit Camera Within Object using Bounds <br/>
     /// Note: Bounds is Axis-Aligned
-    public static void FitCameraToObject(Camera cam, GameObject gameobject, float fitFactor)
+    /// </summary>
+    public static void FitCameraWithinObject(Camera cam, GameObject gameobject, float fitFactor)
     {
-        // Get Object Bounds - Including Childrens - Uses Collider first, else Renderer
+        // Get Object Bounds - Including Children
         Bounds? boundsnullable = gameobject.GetTotalAnyBounds();
         if (!boundsnullable.HasValue) return;
         var bounds = boundsnullable.Value;
 
-        float size = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+        float maxSize = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
 
         float cameraView = 2 * Mathf.Tan(0.5f * Mathf.Deg2Rad * cam.fieldOfView);
-        float distance = fitFactor * size / cameraView;
+        float distance = fitFactor * maxSize / cameraView;
 
-        distance += 0.5f * size;
+        distance += 0.5f * maxSize;
 
         // Update Camera
         var dir = gameobject.transform.forward;

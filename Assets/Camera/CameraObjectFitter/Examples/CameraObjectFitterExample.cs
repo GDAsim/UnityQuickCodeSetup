@@ -1,4 +1,3 @@
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
@@ -29,12 +28,12 @@ public class CameraObjectFitterExample : MonoBehaviour
         switch (fitType)
         {
             case FitType.FitObjectToCamera:
-                CameraObjectFitter.FitObjectToCamera(targetGameobject, cam, fitFactor);
-                cam.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+                CameraObjectFitter.FitObjectWithinCamera(targetGameobject, cam, fitFactor);
+                //cam.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
                 break;
             case FitType.FitCameraToObject:
-                CameraObjectFitter.FitCameraToObject(cam, targetGameobject, fitFactor);
-                targetGameobject.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+                CameraObjectFitter.FitCameraWithinObject(cam, targetGameobject, fitFactor);
+                //targetGameobject.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
                 break;
         }
     }

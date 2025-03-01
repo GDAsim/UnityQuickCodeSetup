@@ -2,12 +2,11 @@ using UnityEngine;
 
 /// <summary>
 /// About:
-/// Setup a list of Camera as a GridLayout Split Screen 
+/// Setup a list of Camera as a Grid Split Screen Display <br/>
 /// 
-/// How To Use:
-/// Attach this script to a GameObject
-/// Assign Camera GameObjects
-/// 
+/// How To Use: <br/>
+/// 1. Attach this script to a GameObject <br/>
+/// 2. Assign Camera GameObjects <br/>
 /// </summary>
 public class CameraViewportLayout : MonoBehaviour
 {
