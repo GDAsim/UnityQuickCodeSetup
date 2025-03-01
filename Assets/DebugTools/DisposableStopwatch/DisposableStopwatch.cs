@@ -1,18 +1,21 @@
 /// <summary>
 /// About:
-/// Simple script to draw Grid on Scene in play mode
+/// Provides a Quick Simple Method to quickly measure a void function / Action execution time 
 /// 
 /// How To Use:
+/// 
+/// Method 1:
 /*
     using (new DisposableStopwatch(timespan => Debug.Log($"{timespan} elapsed"))) 
     {
         func()
     }
+*/
 
-    or 
-
+/// Method 2:
+/*
     DisposableStopwatch.Time(() => { func() }, 100000);
- */
+*/
 /// 
 /// Reference:
 /// https://stackoverflow.com/questions/232848/wrapping-stopwatch-timing-with-a-delegate-or-lambda

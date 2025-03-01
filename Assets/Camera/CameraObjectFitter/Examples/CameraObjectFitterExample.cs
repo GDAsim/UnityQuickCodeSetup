@@ -23,17 +23,15 @@ public class CameraObjectFitterExample : MonoBehaviour
     {
         if (!targetGameobject) return;
 
-        float rotateSpeed = 90;
-
         switch (fitType)
         {
             case FitType.FitObjectToCamera:
                 CameraObjectFitter.FitObjectWithinCamera(targetGameobject, cam, fitFactor);
-                //cam.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+                targetGameobject.transform.localScale = Vector3.one * (1 + Mathf.PingPong(Time.time, 1));
                 break;
             case FitType.FitCameraToObject:
                 CameraObjectFitter.FitCameraWithinObject(cam, targetGameobject, fitFactor);
-                //targetGameobject.transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+                targetGameobject.transform.localScale = Vector3.one * (1 + Mathf.PingPong(Time.time, 1));
                 break;
         }
     }
