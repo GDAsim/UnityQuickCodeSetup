@@ -9,7 +9,12 @@ I keep Quick Reusable Scene Assets & Scripts that are highly reusable for quick 
 </details>
 
 <details>
+  
   <summary>CameraViewportSplitter</summary>
+  
   Script to update Camera Viewport Rect based on a Grid Input
+  
+  ![](/../images/Assets/Camera/CameraViewportSplitter/CameraViewportSplitter.png)
+  
 </details>
 
