@@ -1,6 +1,12 @@
+/* 
+ * About:
+ * Window to search for missing scripts
+ * 1. Search missing scripts in Scene
+ * 2. Search missing scripts in Assets
+ */
+
 using System.Linq;
 using System.Collections.Generic;
-
 using UnityEditor;
 using UnityEngine;
 
@@ -12,35 +18,31 @@ public class MissingScriptsFinder : EditorWindow
         GetWindow(typeof(MissingScriptsFinder));
     }
 
-    static List<GameObject> missingScript_sceneList = new ();
-    static List<string> missingScript_prefabList = new ();
+    List<GameObject> missingScripts_scene = new ();
+    List<string> missingScripts_project = new ();
     Vector2 scrollPosition;
 
     void OnGUI()
     {
-        GUIStyle style = new GUIStyle(GUI.skin.box);
+        GUIStyle style = new(GUI.skin.box);
 
-        #region Search Current Scene
+        #region Search Scene
         GUILayout.BeginVertical(style);
 
-        #region Buttons
         GUILayout.BeginHorizontal(style);
-
-        if (GUILayout.Button("Search Missing Scripts In Scene")) FindMissingScriptsInCurrentScene();
-        if (missingScript_sceneList.Count > 0 && GUILayout.Button("Clear")) missingScript_sceneList.Clear();
-
+        if (GUILayout.Button("Search Missing Scripts In Scene")) FindMissingScriptsInScene();
+        if (missingScripts_scene.Count > 0 && GUILayout.Button("Clear")) missingScripts_scene.Clear();
         GUILayout.EndHorizontal();
-        #endregion
 
-        #region Results
-        if (missingScript_sceneList.Count > 0)
+        // Results
+        if (missingScripts_scene.Count > 0)
         {
             GUILayout.Label("Results:", EditorStyles.boldLabel);
             GUILayout.BeginVertical(style);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(120));
-            foreach (var go in missingScript_sceneList)
+            foreach (var go in missingScripts_scene)
             {
-                if (GUILayout.Button($"{(go.transform.parent !=null ? $"{GetGameObjectRootParentName(go)}../" : " ")}{go.name}"))
+                if (GUILayout.Button($"{(go.transform.parent !=null ? $"{go.GetRoot().name}../" : " ")}{go.name}"))
                 {
                     EditorGUIUtility.PingObject(go);
                 }
@@ -52,32 +54,26 @@ public class MissingScriptsFinder : EditorWindow
         {
             GUILayout.Label("Results: None", EditorStyles.boldLabel);
         }
-        #endregion
-
         GUILayout.EndVertical();
         #endregion
 
         GUILayout.Space(20);
 
-        #region Search Current Project
+        #region Search Project
         GUILayout.BeginVertical(style);
 
-        #region Buttons
         GUILayout.BeginHorizontal(style);
-
-        if (GUILayout.Button("Search Missing Scripts in Project")) FindMissingScriptsInAssets();
-        if (missingScript_prefabList.Count > 0 && GUILayout.Button("Clear")) missingScript_prefabList.Clear();
-
+        if (GUILayout.Button("Search Missing Scripts in Assets")) FindMissingScriptsInAssets();
+        if (missingScripts_project.Count > 0 && GUILayout.Button("Clear")) missingScripts_project.Clear();
         GUILayout.EndHorizontal();
-        #endregion
 
-        #region Results
-        if (missingScript_prefabList.Count > 0)
+        // Results
+        if (missingScripts_project.Count > 0)
         {
             GUILayout.Label("Results:", EditorStyles.boldLabel);
             GUILayout.BeginVertical(style);
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(120));
-            foreach (string path in missingScript_prefabList)
+            foreach (string path in missingScripts_project)
             {
                 if (GUILayout.Button(path))
                 {
@@ -91,45 +87,15 @@ public class MissingScriptsFinder : EditorWindow
         {
             GUILayout.Label("Results: None", EditorStyles.boldLabel);
         }
-        #endregion
-
         GUILayout.EndVertical();
         #endregion
-
-        static string GetGameObjectRootParentName(GameObject go)
-        {
-            while (go.transform.parent != null)
-            {
-                go = go.transform.parent.gameObject;
-            }
-            return go.name;
-        }
     }
 
-    static void FindMissingScriptsInAssets()
+    void FindMissingScriptsInScene()
     {
-        missingScript_prefabList.Clear();
+        missingScripts_scene.Clear();
 
-        string[] prefabPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".prefab", System.StringComparison.OrdinalIgnoreCase)).ToArray();
-
-        foreach (string path in prefabPaths)
-        {
-            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            var prefabComponents = prefab.GetComponentsInChildren<Component>(true);
-
-            bool hasNullComponent = prefabComponents.Any(c => c == null);
-            if (hasNullComponent)
-            {
-                missingScript_prefabList.Add(path);
-            }
-        }
-    }
-
-    static void FindMissingScriptsInCurrentScene()
-    {
-        missingScript_sceneList.Clear();
-
-        var rootGOsInScene = GameObject.FindObjectsOfType<GameObject>(true).Where(go => go.transform.parent == null);
+        var rootGOsInScene = FindObjectsOfType<GameObject>(true).Where(go => go.transform.parent == null);
         foreach (var go in rootGOsInScene)
         {
             FindMissingScriptsInGameObjectRecursive(go);
@@ -141,12 +107,31 @@ public class MissingScriptsFinder : EditorWindow
             bool hasNullComponent = components.Any(c => c == null);
             if (hasNullComponent)
             {
-                missingScript_sceneList.Add(go);
+                missingScripts_scene.Add(go);
             }
 
             foreach (Transform child in go.transform)
             {
                 FindMissingScriptsInGameObjectRecursive(child.gameObject);
+            }
+        }
+    }
+
+    void FindMissingScriptsInAssets()
+    {
+        missingScripts_project.Clear();
+
+        string[] prefabPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".prefab", System.StringComparison.OrdinalIgnoreCase)).ToArray();
+
+        foreach (string path in prefabPaths)
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            var prefabComponents = prefab.GetComponentsInChildren<Component>(true);
+
+            bool hasNullComponent = prefabComponents.Any(c => c == null);
+            if (hasNullComponent)
+            {
+                missingScripts_project.Add(path);
             }
         }
     }

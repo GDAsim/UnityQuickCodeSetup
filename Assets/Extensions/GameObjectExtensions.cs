@@ -461,4 +461,13 @@ public static partial class GameObjectExtensions
 
     //====================================================================================================
     //====================================================================================================
+
+    public static GameObject GetRoot(this GameObject go)
+    {
+        while (go.transform.parent != null)
+        {
+            go = go.transform.parent.gameObject;
+        }
+        return go;
+    }
 }

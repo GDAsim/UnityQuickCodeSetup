@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿/* 
+ * About:
+ * Script to highlight a gameobject in Hierachy
+ * 
+ * How It Works:
+ * 1. An editor script (HierachyHighlightLoader) is loaded in unityeditor 
+ * 2. Script adds custom draw calls to override/overdraw on default heirachy drawing 
+ * 3. Script draw based on the gameobject's HierachyHighlight component
+ * 
+ * How To Use:
+ * 1. Attach this script to a GameObject you want to highlight in inspector
+ * 2. Adjust settings as needed
+ */
+
+using UnityEngine;
 using UnityEditor;
 
 public class HierachyHighlight : MonoBehaviour
