@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/* 
+ * About:
+ * Tool to easily change selected gameobject's material all in one go
+ * 
+ * TODO: 
+ * 1. Add display selected object names in a textbox
+ * 
+ */
+
+using UnityEngine;
 using UnityEditor;
 
 public class ChangeMaterialsInScene : EditorWindow
@@ -9,11 +18,12 @@ public class ChangeMaterialsInScene : EditorWindow
     int prevselectedcount = 0;
     Transform[] selectedobj;
 
-    [MenuItem("Utilities/GameObject/Change Selected Object Material")]
-    static void Init()
+    [MenuItem("Tools/GameObject/Change Selected Object Material")]
+    public static void ShowWindow()
     {
         GetWindow(typeof(ChangeMaterialsInScene));
     }
+
     void Update()
     {
         selectedobj = Selection.transforms;
@@ -22,6 +32,7 @@ public class ChangeMaterialsInScene : EditorWindow
             Focus();
         }
     }
+
     void OnGUI()
     {
         prevselectedcount = selectedobj.Length;
