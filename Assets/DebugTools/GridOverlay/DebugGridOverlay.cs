@@ -1,74 +1,74 @@
-
+/* 
+ * About:
+ * Simple script to draw a debug Grid in Play Mode
+ * 
+ * How To Use:
+ * Attach this script to camera
+ * 
+ * Note:
+ * Uses Camera OnPostRender with GL to draw
+ * 
+ * Reference:
+ * https://docs.unity3d.com/ScriptReference/GL.html
+ */
 
 using UnityEngine;
 
-/// <summary>
-/// About:
-/// Simple script to draw Grid on Scene in play mode
-/// 
-/// How To Use:
-/// Attach this script to camera
-/// 
-/// Note:
-/// Uses Camera OnPostRender with GL to draw
-/// 
-/// Reference:
-/// https://docs.unity3d.com/ScriptReference/GL.html
-/// </summary>
-
-public class GridOverlay : MonoBehaviour
+public class DebugGridOverlay : MonoBehaviour
 {
     public bool Show = true;
     public bool Centralized = false;
-    public int GridsizeX = 10;
-    public int GridsizeY = 10;
-    public int GridsizeZ = 10;
+    public int GridSizeX = 10;
+    public int GridSizeY = 10;
+    public int GridSizeZ = 10;
     public float GridSizeMultipllier = 1;
+    public Color MainColor = new(0f, 1f, 0f, 1f);
+
     Material lineMaterial;
-    public Color mainColor = new Color(0f, 1f, 0f, 1f);
 
     void CreateLineMaterial()
     {
         if (!lineMaterial)
         {
-            // Unity has a built-in shader that is useful for drawing
-            // simple colored things.
             var shader = Shader.Find("Hidden/Internal-Colored");
+
             lineMaterial = new Material(shader);
             lineMaterial.hideFlags = HideFlags.HideAndDontSave;
+
             // Turn on alpha blending
             lineMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
             lineMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            // Turn backface culling off
+
             lineMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
-            // Turn off depth writes
+
             lineMaterial.SetInt("_ZWrite", 0);
         }
     }
     void OnPostRender()
     {
         CreateLineMaterial();
-        // set the current material
-        lineMaterial.SetPass(0);//becuase GL uses current materal to draw.
 
         if (Show && GridSizeMultipllier != 0)
         {
+            // Set material for rendering
+            lineMaterial.SetPass(0);
+
             var GridPosition = transform.position;
 
             int starti = 0;
             int startj = 0;
             int startk = 0;
-            int endi = GridsizeX;
-            int endj = GridsizeY;
-            int endk = GridsizeZ;
+            int endi = GridSizeX;
+            int endj = GridSizeY;
+            int endk = GridSizeZ;
             if (Centralized)    
             {
-                starti = -GridsizeX / 2;
-                startj = -GridsizeY / 2;
-                startk = -GridsizeZ / 2;
-                endi = (GridsizeX+1) / 2;
-                endj = (GridsizeY+1) / 2;
-                endk = (GridsizeZ+1) / 2;
+                starti = -GridSizeX / 2;
+                startj = -GridSizeY / 2;
+                startk = -GridSizeZ / 2;
+                endi = (GridSizeX+1) / 2;
+                endj = (GridSizeY+1) / 2;
+                endk = (GridSizeZ+1) / 2;
             }
             //x
             for (int i = starti; i < endi + 1; i++)
@@ -77,7 +77,7 @@ public class GridOverlay : MonoBehaviour
                 for (int j = startj; j < endj + 1; j++)
                 {
                     GL.Begin(GL.LINES);
-                    GL.Color(mainColor);
+                    GL.Color(MainColor);
                     //z
                     for (int k = startk; k < endk + 1; k++)
                     {

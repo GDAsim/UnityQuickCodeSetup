@@ -3,7 +3,7 @@
  * FPS display
  * 
  * How To Use:
- * Attach this to a GameObject
+ * Attach this script to a GameObject
  * 
  * Note::
  * Uses OnGUI to draw

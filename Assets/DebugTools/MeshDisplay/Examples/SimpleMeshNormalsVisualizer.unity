@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909eee6886e44f64db68e5b7b7179ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleNormals: 0.5
-  color: {r: 1, g: 0, b: 0, a: 1}
+  Scale: 0.1
+  Color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!135 &1323350632
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -441,8 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909eee6886e44f64db68e5b7b7179ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleNormals: 1
-  color: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
+  Scale: 1
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

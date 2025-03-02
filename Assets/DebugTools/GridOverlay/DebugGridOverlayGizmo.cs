@@ -1,78 +1,78 @@
-﻿/// <summary>
-/// About:
-/// Simple script to draw Grid in Scene
-/// 
-/// How To Use:
-/// Attach this script to empty GameObject
-/// 
-/// Note:
-/// Uses Camera OnPostRender with GL to draw
-/// 
-/// Reference:
-/// https://docs.unity3d.com/ScriptReference/Gizmos.html
-/// </summary>
+﻿/* 
+ * About:
+ * Simple script to draw a debug Grid
+ * 
+ * How To Use:
+ * Attach this script to a GameObject
+ * 
+ * Note:
+ * Uses Unity Gizmos to draw
+ * 
+ * Reference:
+ * https://docs.unity3d.com/ScriptReference/Gizmos.html
+ */
 
 using UnityEngine;
 
-public class GridOverlayGizmo : MonoBehaviour
+public class DebugGridOverlayGizmo : MonoBehaviour
 {
     public bool Show = true;
     public bool Centralized = false;
-    public int GridsizeX = 10;
-    public int GridsizeY = 10;
-    public int GridsizeZ = 10;
+    public int GridSizeX = 10;
+    public int GridSizeY = 10;
+    public int GridSizeZ = 10;
     public float GridSizeMultipllier = 1;
-    public Color mainColor = new Color(0f, 1f, 0f, 1f);
+    public Color MainColor = new(0f, 1f, 0f, 1f);
 
     void OnDrawGizmos()
     {
         if (Show && GridSizeMultipllier != 0)
         {
-            Gizmos.color = mainColor;
+            Gizmos.color = MainColor;
             var GridPosition = transform.position;
 
             int starti = 0;
             int startj = 0;
             int startk = 0;
-            int endi = GridsizeX;
-            int endj = GridsizeY;
-            int endk = GridsizeZ;
+            int endi = GridSizeX;
+            int endj = GridSizeY;
+            int endk = GridSizeZ;
             if (Centralized)
             {
-                starti = -GridsizeX / 2;
-                startj = -GridsizeY / 2;
-                startk = -GridsizeZ / 2;
-                endi = (GridsizeX + 1) / 2;
-                endj = (GridsizeY + 1) / 2;
-                endk = (GridsizeZ + 1) / 2;
+                starti = -GridSizeX / 2;
+                startj = -GridSizeY / 2;
+                startk = -GridSizeZ / 2;
+                endi = (GridSizeX + 1) / 2;
+                endj = (GridSizeY + 1) / 2;
+                endk = (GridSizeZ + 1) / 2;
             }
             Vector3 startline;
             Vector3 endline;
 
-            //x
+            // X
             for (int i = starti; i < endi + 1; i++)
             {
-                //y
+                // Y
                 for (int j = startj; j < endj + 1; j++)
                 {
-                    //z
+                    // X
                     for (int k = startk; k < endk + 1; k++)
                     {
-                        //x
+                        // X
                         if (i + 1 < endi + 1)
                         {
                             startline = new Vector3(GridPosition.x + i * GridSizeMultipllier, GridPosition.y + j * GridSizeMultipllier, GridPosition.z + k * GridSizeMultipllier);
                             endline = new Vector3(GridPosition.x + (i + 1) * GridSizeMultipllier, GridPosition.y + j * GridSizeMultipllier, GridPosition.z + k * GridSizeMultipllier);
                             Gizmos.DrawLine(startline, endline);
                         }
-                        //y
+                        // Y
                         if (j + 1 < endj + 1)
                         {
                             startline = new Vector3(GridPosition.x + i * GridSizeMultipllier, GridPosition.y + j * GridSizeMultipllier, GridPosition.z + k * GridSizeMultipllier);
                             endline = new Vector3(GridPosition.x + i * GridSizeMultipllier, GridPosition.y + (j + 1) * GridSizeMultipllier, GridPosition.z + k * GridSizeMultipllier);
                             Gizmos.DrawLine(startline, endline);
                         }
-                        //z
+                        // Z
                         if (k + 1 < endk + 1)
                         {
                             startline = new Vector3(GridPosition.x + i * GridSizeMultipllier, GridPosition.y + j * GridSizeMultipllier, GridPosition.z + k * GridSizeMultipllier);

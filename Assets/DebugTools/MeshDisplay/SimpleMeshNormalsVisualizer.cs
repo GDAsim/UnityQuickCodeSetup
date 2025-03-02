@@ -1,27 +1,27 @@
-﻿/// <summary>
-/// Very Simple Script to See Mesh Normals
-/// 
-/// How To Use:
-/// Attach this script a GameObject that has MeshFilter
-/// 
-/// Note:
-/// Uses OnDrawGizmo to draw
-/// </summary>
+﻿/* 
+ * About:
+ * Simple script to display see Mesh normals
+ * 
+ * How To Use:
+ * Attach this script to a GameObject that has MeshFilter
+ * 
+ * Note:
+ * Uses OnDrawGizmo to draw
+ */
 
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class SimpleMeshNormalsVisualizer : MonoBehaviour
 {
-    public float scaleNormals = 1;
-    public Color color = Color.white;
+    public float Scale = 0.1f;
+    public Color Color = Color.red;
 
     void OnDrawGizmos()
     {
         if (!enabled) return;
 
-        MeshFilter meshFilter = GetComponent<MeshFilter>();
-        if (meshFilter == null) return;
+        if (!TryGetComponent<MeshFilter>(out var meshFilter)) return;
 
         Mesh mesh = meshFilter.sharedMesh;
         if (mesh == null) return;
@@ -29,11 +29,11 @@ public class SimpleMeshNormalsVisualizer : MonoBehaviour
         Vector3[] vertices = mesh.vertices;
         Vector3[] normals = mesh.normals;
 
-        Gizmos.color = color;
+        Gizmos.color = Color;
         for (int i = 0; i < vertices.Length; i++)
         {
             Vector3 startLine = vertices[i];
-            Vector3 endLine = startLine + (normals[i] * Mathf.Clamp(scaleNormals, 0, scaleNormals));
+            Vector3 endLine = startLine + (normals[i] * Mathf.Clamp(Scale, 0, Scale));
             Gizmos.DrawLine(startLine + transform.position, endLine + transform.position);
         }
     }
