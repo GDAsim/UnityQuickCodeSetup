@@ -1,3 +1,5 @@
+#if EXTENDSUGAR
+
 using UnityEngine;
 
 public static partial class MonoBehaviourExtensions2
@@ -11,3 +13,4 @@ public static partial class MonoBehaviourExtensions2
         script.StartCoroutine(RectTransformExtensions.ForceRebuildLayoutImmediate(rectTransform, delay));
     }
 }
+#endif

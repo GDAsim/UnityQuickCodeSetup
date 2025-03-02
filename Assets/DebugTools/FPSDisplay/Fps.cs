@@ -5,7 +5,7 @@
  * How To Use:
  * Attach this script to a GameObject
  * 
- * Note::
+ * Note:
  * Uses OnGUI to draw
  */
 

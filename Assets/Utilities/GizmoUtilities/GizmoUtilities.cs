@@ -1,10 +1,5 @@
-using System;
-
 using UnityEngine;
 
-/// <summary>
-/// Just a Unity Gizmo Wrapper - to include color
-/// </summary>
 public static class GizmoUtilities 
 {
     #region Simple Gizmo Wrapper to have colored Gizmo

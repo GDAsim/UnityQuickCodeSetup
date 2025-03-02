@@ -1,3 +1,3 @@
 Prototype: 
 
-Keeps scripts that are meant for fast prototyping
+Keeps game related scripts and aseets that are meant for fast prototyping
