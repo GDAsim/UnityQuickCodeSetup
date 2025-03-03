@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;  
  
@@ -9,3 +11,4 @@ public static class SelectMainCamera
         if (Camera.main != null) Selection.activeObject = Camera.main.gameObject;
     }
 }
+#endif

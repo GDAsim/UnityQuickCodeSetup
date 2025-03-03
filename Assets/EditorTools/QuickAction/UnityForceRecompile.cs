@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 using UnityEngine;
 
 public static class UnityForceRecompile
@@ -10,3 +12,4 @@ public static class UnityForceRecompile
         Debug.Log("Assets Recompiled");
     }
 }
+#endif

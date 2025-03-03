@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -13,21 +15,26 @@ public static class UnitySceneScreenshot
     /// Take Screenshot using Camera Rendertexture
     /// </summary>
     [MenuItem("Tools/QuickAction/Screenshot/Take Game Screenshot #p")]
-    public static void TakeGameScreenShot()
+    static void TakeGameScreenShot()
     {
+        var cam = Camera.main;
+        if(cam == null)
+        {
+            Debug.LogError("This Method Requires a Camera in Scene");
+            return;
+        }
+
         // TOUPDATE
         const int ResWidth = 4096;
         const int ResHeight = 2048;
         const string ScreenshotName = "Screenshot.png";
 
         string ScreenshotPath = string.Empty;
-#if UNITY_EDITOR
         ScreenshotPath = Application.dataPath;
-#endif
+      
         var path = Path.Combine(ScreenshotPath, ScreenshotName);
         path = FileUtilities.GetUniqueFilePath_AppendNumber(path);
 
-        var cam = Camera.main;
         var rt = new RenderTexture(ResWidth, ResHeight, 24);
 
         // Save current
@@ -59,25 +66,22 @@ public static class UnitySceneScreenshot
         Object.DestroyImmediate(rt);
         Object.DestroyImmediate(screenTex);
 
-#if UNITY_EDITOR
         AssetDatabase.Refresh();
-#endif
     }
 
     /// <summary>
     /// Take Screenshot using UnityEngine.ScreenCapture.CaptureScreenshot
     /// </summary>
     [MenuItem("Tools/QuickAction/Screenshot/Take Game Screenshot 2")]
-    public static void TakeGameScreenShot2()
+    static void TakeGameScreenShot2()
     {
         // TOUPDATE
         const int ScreenshotSize = 1;
         const string ScreenshotName = "Screenshot.png";
 
-    string ScreenshotPath = string.Empty;
-#if UNITY_EDITOR
+        string ScreenshotPath = string.Empty;
         ScreenshotPath = Application.dataPath;
-#endif
+
         var path = Path.Combine(ScreenshotPath, ScreenshotName);
         path = FileUtilities.GetUniqueFilePath_AppendNumber(path);
 
@@ -87,8 +91,7 @@ public static class UnitySceneScreenshot
         ScreenCapture.CaptureScreenshot(path, ScreenshotSize);
         Debug.Log(string.Format("Screenshot Saved : {0}", path));
 
-#if UNITY_EDITOR
         AssetDatabase.Refresh();
-#endif
     }
 }
+#endif

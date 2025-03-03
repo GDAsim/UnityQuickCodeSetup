@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 using UnityEngine;
 
 public static class UnityClearPlayerpref
@@ -10,3 +12,4 @@ public static class UnityClearPlayerpref
         Debug.Log("Player Pref Cleared!");
     }
 }
+#endif

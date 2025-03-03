@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using System.CodeDom.Compiler;
 using System.Reflection;
 using Microsoft.CSharp;
@@ -35,6 +37,15 @@ public class ImmediateCode : EditorWindow
 
     // position of scroll view
     Vector2 scrollPosition;
+
+    [MenuItem("Tools/Misc/ImmediateCode")]
+    public static void ShowImmediateWindow()
+    {
+        var window = GetWindow<ImmediateCode>("Immediate");
+        window.Show();
+        window.Focus();
+        window.Repaint();
+    }
 
     void ValidateScript()
     {
@@ -139,21 +150,6 @@ public class ImmediateCode : EditorWindow
         HandleSaveLoadButtons();
     }
 
-    [MenuItem("Utilities/ImmediateCode")]
-    public static void ShowImmediateWindow()
-    {
-        // get the window, show it, and hand it focus
-        try
-        {
-            ImmediateCode code = GetWindow<ImmediateCode>();
-            code.titleContent.text = "Immediate";
-            code.Show();
-            code.Focus();
-            code.Repaint();
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex.Message);
-        }
-    }
+    
 }
+#endif

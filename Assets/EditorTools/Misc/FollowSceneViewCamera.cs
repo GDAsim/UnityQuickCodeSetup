@@ -6,6 +6,8 @@
  * Undo supported
  */
 
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 
@@ -67,3 +69,4 @@ public class FollowSceneViewCamera : Editor
         }
     }
 }
+#endif

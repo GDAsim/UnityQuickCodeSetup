@@ -5,6 +5,8 @@
  * 2. Search missing scripts in Assets
  */
 
+#if UNITY_EDITOR
+
 using System.Linq;
 using System.Collections.Generic;
 using UnityEditor;
@@ -15,7 +17,10 @@ public class MissingScriptsFinder : EditorWindow
     [MenuItem("Tools/Missing Scripts Finder")]
     public static void ShowWindow()
     {
-        GetWindow(typeof(MissingScriptsFinder));
+        var window = GetWindow<MissingScriptsFinder>("Missing Scripts Finder");
+        window.Show();
+        window.Focus();
+        window.Repaint();
     }
 
     List<GameObject> missingScripts_scene = new ();
@@ -136,3 +141,4 @@ public class MissingScriptsFinder : EditorWindow
         }
     }
 }
+#endif

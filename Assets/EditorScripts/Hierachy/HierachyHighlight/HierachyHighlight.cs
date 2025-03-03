@@ -12,6 +12,7 @@
  * 2. Adjust settings as needed
  */
 
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -25,8 +26,7 @@ public class HierachyHighlight : MonoBehaviour
 
     void OnValidate()
     {
-#if UNITY_EDITOR
         EditorApplication.RepaintHierarchyWindow();
-#endif
     }
 }
+#endif

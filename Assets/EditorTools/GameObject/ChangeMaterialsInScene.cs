@@ -7,6 +7,7 @@
  * 
  */
 
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -21,7 +22,10 @@ public class ChangeMaterialsInScene : EditorWindow
     [MenuItem("Tools/GameObject/Change Selected Object Material")]
     public static void ShowWindow()
     {
-        GetWindow(typeof(ChangeMaterialsInScene));
+        var window = GetWindow<ChangeMaterialsInScene>("Change Selected Object Material");
+        window.Show();
+        window.Focus();
+        window.Repaint();
     }
 
     void Update()
@@ -88,3 +92,4 @@ public class ChangeMaterialsInScene : EditorWindow
         GUILayout.EndVertical();
     }
 }
+#endif

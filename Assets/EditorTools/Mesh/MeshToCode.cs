@@ -1,4 +1,4 @@
-﻿//Requires Clipboard Helper.cs
+﻿#if UNITY_EDITOR
 
 using System;
 using System.Linq;
@@ -11,35 +11,23 @@ using UnityEngine;
 public class MeshToCode : EditorWindow
 {
     Vector2 scrollPosition; // Position of scroll view.
-
     GameObject prefab; // A reference to the selected prefab.
-
     string code; // String that will hold the generated C# code.
-
     bool optimize; // Holds the value of the Optimize check box.
-
     bool roundVertexes; // Holds the checked state of the Round Vertexes check box.
-
     int vertexDecimals; // Holds the number of decimal places to round off the vertex values.
-
     bool roundNorms; // Holds the checked state of the round normals check box.
-
     int normalDecimals; // Holds the number of decimal places to round off the normal values.
 
-    // Provides a menu in the Unity menu system for showing this window.
     [MenuItem("Tools/Mesh/Mesh To Code")]
     public static void ShowWindow()
     {
-        //create a unity window, show it, and give focus
-        MeshToCode window = GetWindow<MeshToCode>(false, "Mesh To Code");
+        var window = GetWindow<MeshToCode>("Mesh To Code");
         window.Show();
         window.Focus();
         window.Repaint();
     }
 
-    /// <summary>
-    /// Draws the window controls.
-    /// </summary>
     void OnGUI()
     {
         //creates the area for user to place in the prefab object
@@ -208,3 +196,4 @@ public class MeshToCode : EditorWindow
         return string.Format("        new Vector3({0}f, {1}f, {2}f),\r\n", vector.x, vector.y, vector.z);
     }
 }
+#endif

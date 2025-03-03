@@ -3,6 +3,8 @@
  * Color picker tool within Unity
  */
 
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 
@@ -15,7 +17,10 @@ public class ColorPickerWindow : EditorWindow
     [MenuItem("Tools/Misc/Color Picker")]
     public static void ShowWindow()
     {
-        GetWindow<ColorPickerWindow>("Color Picker");
+        var window = GetWindow<ColorPickerWindow>("Color Picker");
+        window.Show();
+        window.Focus();
+        window.Repaint();
     }
 
     void OnGUI()
@@ -62,3 +67,4 @@ public class ColorPickerWindow : EditorWindow
                 color32.a));
     }
 }
+#endif

@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
 
@@ -29,11 +31,7 @@ public class MeshEditor : EditorWindow
 
 	SkinnedMeshRenderer SMR;
 
-	[MenuItem("Tools/Mesh/MeshEditor")]
-	static void Init() 
-	{
-		EditorWindow.GetWindow(typeof(MeshEditor));
-	}
+	
 	GameObject oldObject;
 	
 #if !(UNITY_3_0 || UNITY_3_0_0 || UNITY_3_1 || UNITY_3_2 || UNITY_3_3 || UNITY_3_4 || UNITY_3_5)
@@ -45,7 +43,16 @@ public class MeshEditor : EditorWindow
 	int idxMin, idxMax;
 	float idxMinSlider, idxMaxSlider;
 
-	void OnGUI() {
+    [MenuItem("Tools/Mesh/MeshEditor")]
+    static void ShowWindow()
+    {
+        var window = GetWindow<MeshEditor>("MeshEditor");
+        window.Show();
+        window.Focus();
+        window.Repaint();
+    }
+
+    void OnGUI() {
 		GUILayout.BeginHorizontal();
 		{
 #if UNITY_3_0 || UNITY_3_0_0 || UNITY_3_1 || UNITY_3_2 || UNITY_3_3 || UNITY_3_4 || UNITY_3_5
@@ -353,3 +360,4 @@ public class MeshEditor : EditorWindow
 		mat.SetRow(3, EditorGUILayout.Vector4Field("3", mat.GetRow(3)));
 	}
 }
+#endif

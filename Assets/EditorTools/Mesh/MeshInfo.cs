@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
@@ -72,3 +74,4 @@ public static class MeshInfo
         EditorUtility.DisplayDialog(Title, Content, "OK", "");
     }
 }
+#endif

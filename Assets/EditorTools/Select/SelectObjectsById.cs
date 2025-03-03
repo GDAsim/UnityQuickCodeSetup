@@ -3,6 +3,8 @@
  * A Window to select objects by id
  */
 
+#if UNITY_EDITOR
+
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -12,6 +14,15 @@ using Object = UnityEngine.Object;
 public class SelectObjectsById : EditorWindow
 {
     string inputText;
+
+    [MenuItem("Tools/Select/Select Objects by ID")]
+    public static void ShowWindow()
+    {
+        var window = GetWindow<SelectObjectsById>("Select Objects by ID");
+        window.Show();
+        window.Focus();
+        window.Repaint();
+    }
 
     void OnGUI()
     {
@@ -46,14 +57,5 @@ public class SelectObjectsById : EditorWindow
         GUILayout.EndHorizontal();
         GUILayout.EndVertical();
     }
-
-    [MenuItem("Tools/Select/Select Objects by ID")]
-    public static void ShowWindow()
-    {
-        SelectObjectsById window = GetWindow<SelectObjectsById>();
-        window.titleContent.text = "Select Objects by ID";
-        window.Show();
-        window.Focus();
-        window.Repaint();
-    }
 }
+#endif

@@ -3,6 +3,8 @@
  * Helper class to provide reusable functions regarding UnityEditor Window
  */
 
+#if UNITY_EDITOR
+
 using UnityEditor;
 
 public class UnityEditorWindow
@@ -25,3 +27,4 @@ public class UnityEditorWindow
         return EditorWindow.focusedWindow != null && EditorWindow.focusedWindow.titleContent.text == "Hierarchy";
     }
 }
+#endif
