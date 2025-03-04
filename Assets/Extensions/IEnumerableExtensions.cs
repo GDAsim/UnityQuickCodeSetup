@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class IEnumerableExtensions
@@ -33,5 +35,10 @@ public static class IEnumerableExtensions
 
     //====================================================================================================
     //====================================================================================================
-       
+
+
+    public static IEnumerable<T> test<T>(this IEnumerable<T> source)
+    {
+        return source.OrderBy(n => System.Guid.NewGuid());
+    }
 }
