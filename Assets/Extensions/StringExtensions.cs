@@ -1,3 +1,5 @@
+using System.Text;
+
 public static class StringExtensions
 {
     //====================================================================================================
@@ -111,4 +113,21 @@ public static class StringExtensions
 
     //====================================================================================================
     //====================================================================================================
+
+    /// <summary>
+    /// Returns MD5 of string
+    /// </summary>
+    public static string MD5(this string str)
+    {
+        var md5 = System.Security.Cryptography.MD5.Create();
+        var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
+
+        var sb = new StringBuilder();
+        for (int i = 0; i < hash.Length; i++)
+        {
+            sb.Append(hash[i].ToString("x2"));
+        }
+
+        return sb.ToString();
+    }
 }
