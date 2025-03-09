@@ -86,7 +86,7 @@ public static class UnitySceneScreenshot
         path = FileUtilities.GetUniqueFilePath_AppendNumber(path);
 
         // ScreenCapture.CaptureScreenshot Cant Take a Screenshot if game is not focused
-        if (!UnityEditorWindow.IsGameWindowFocused()) UnityEditorWindow.OpenGameWindow();
+        if (!UnityEditorWindow.IsGameWindowFocused()) UnityEditorWindow.OpenWindow(UnityEditorWindow.UnityWindowType.Game);
 
         ScreenCapture.CaptureScreenshot(path, ScreenshotSize);
         Debug.Log(string.Format("Screenshot Saved : {0}", path));
