@@ -75,7 +75,7 @@ public static class ColorUtilities
     public static Color LightBlue { get { return new Color32(173, 216, 230, 255); } }
     public static Color LightCoral { get { return new Color32(240, 128, 128, 255); } }
     public static Color LightCyan { get { return new Color32(224, 255, 255, 255); } }
-    public static Color LightGoldenodYellow { get { return new Color32(250, 250, 210, 255); } }
+    public static Color LightGoldenrodYellow { get { return new Color32(250, 250, 210, 255); } }
     public static Color LightGray { get { return new Color32(211, 211, 211, 255); } }
     public static Color LightGreen { get { return new Color32(144, 238, 144, 255); } }
     public static Color LightPink { get { return new Color32(255, 182, 193, 255); } }
@@ -107,14 +107,14 @@ public static class ColorUtilities
     public static Color Navy { get { return new Color32(0, 0, 128, 255); } }
     public static Color OldLace { get { return new Color32(253, 245, 230, 255); } }
     public static Color Olive { get { return new Color32(128, 128, 0, 255); } }
-    public static Color Olivedrab { get { return new Color32(107, 142, 35, 255); } }
+    public static Color OliveDrab { get { return new Color32(107, 142, 35, 255); } }
     public static Color Orange { get { return new Color32(255, 165, 0, 255); } }
-    public static Color Orangered { get { return new Color32(255, 69, 0, 255); } }
+    public static Color OrangeRed { get { return new Color32(255, 69, 0, 255); } }
     public static Color Orchid { get { return new Color32(218, 112, 214, 255); } }
     public static Color PaleGoldenrod { get { return new Color32(238, 232, 170, 255); } }
     public static Color PaleGreen { get { return new Color32(152, 251, 152, 255); } }
     public static Color PaleTurquoise { get { return new Color32(175, 238, 238, 255); } }
-    public static Color PaleVioletred { get { return new Color32(219, 112, 147, 255); } }
+    public static Color PaleVioletRed { get { return new Color32(219, 112, 147, 255); } }
     public static Color PapayaWhip { get { return new Color32(255, 239, 213, 255); } }
     public static Color PeachPuff { get { return new Color32(255, 218, 185, 255); } }
     public static Color Peru { get { return new Color32(205, 133, 63, 255); } }
@@ -153,4 +153,295 @@ public static class ColorUtilities
     //====================================================================================================
     //====================================================================================================
 
+    public enum ColorEnum
+    {
+        AliceBlue,
+        AntiqueWhite,
+        Aqua,
+        Aquamarine,
+        Azure,
+        Beige,
+        Bisque,
+        Black,
+        BlanchedAlmond,
+        Blue,
+        BlueViolet,
+        Brown,
+        Burlywood,
+        CadetBlue,
+        Chartreuse,
+        Chocolate,
+        Coral,
+        CornflowerBlue,
+        Cornsilk,
+        Crimson,
+        Cyan,
+        DarkBlue,
+        DarkCyan,
+        DarkGoldenrod,
+        DarkGray,
+        DarkGreen,
+        DarkKhaki,
+        DarkMagenta,
+        DarkOliveGreen,
+        DarkOrange,
+        DarkOrchid,
+        DarkRed,
+        DarkSalmon,
+        DarkSeaGreen,
+        DarkSlateBlue,
+        DarkSlateGray,
+        DarkTurquoise,
+        DarkViolet,
+        DeepPink,
+        DeepSkyBlue,
+        DimGray,
+        DodgerBlue,
+        FireBrick,
+        FloralWhite,
+        ForestGreen,
+        Fuchsia,
+        Gainsboro,
+        GhostWhite,
+        Gold,
+        Goldenrod,
+        Gray,
+        Green,
+        GreenYellow,
+        Honeydew,
+        HotPink,
+        IndianRed,
+        Indigo,
+        Ivory,
+        Khaki,
+        Lavender,
+        Lavenderblush,
+        LawnGreen,
+        LemonChiffon,
+        LightBlue,
+        LightCoral,
+        LightCyan,
+        LightGoldenrodYellow,
+        LightGray,
+        LightGreen,
+        LightPink,
+        LightSalmon,
+        LightSeaGreen,
+        LightSkyBlue,
+        LightSlateGray,
+        LightSteelBlue,
+        LightYellow,
+        Lime,
+        LimeGreen,
+        Linen,
+        Magenta,
+        Maroon,
+        MediumAquamarine,
+        MediumBlue,
+        MediumOrchid,
+        MediumPurple,
+        MediumSeaGreen,
+        MediumSlateBlue,
+        MediumSpringGreen,
+        MediumTurquoise,
+        MediumVioletRed,
+        MidnightBlue,
+        Mintcream,
+        MistyRose,
+        Moccasin,
+        NavajoWhite,
+        Navy,
+        OldLace,
+        Olive,
+        Olivedrab,
+        Orange,
+        OrangeRed,
+        Orchid,
+        PaleGoldenrod,
+        PaleGreen,
+        PaleTurquoise,
+        PaleVioletRed,
+        PapayaWhip,
+        PeachPuff,
+        Peru,
+        Pink,
+        Plum,
+        PowderBlue,
+        Purple,
+        Red,
+        RosyBrown,
+        RoyalBlue,
+        SaddleBrown,
+        Salmon,
+        SandyBrown,
+        SeaGreen,
+        Seashell,
+        Sienna,
+        Silver,
+        SkyBlue,
+        SlateBlue,
+        SlateGray,
+        Snow,
+        SpringGreen,
+        SteelBlue,
+        Tan,
+        Teal,
+        Thistle,
+        Tomato,
+        Turquoise,
+        Violet,
+        Wheat,
+        White,
+        WhiteSmoke,
+        Yellow,
+        YellowGreen
+    }
+
+    public static Color GetColor(ColorEnum color)
+    {
+        switch (color)
+        {
+            case ColorEnum.AliceBlue: return AliceBlue;
+            case ColorEnum.AntiqueWhite: return AntiqueWhite;
+            case ColorEnum.Aqua: return Aqua;
+            case ColorEnum.Aquamarine: return Aquamarine;
+            case ColorEnum.Azure: return Azure;
+            case ColorEnum.Beige: return Beige;
+            case ColorEnum.Bisque: return Bisque;
+            case ColorEnum.Black: return Black;
+            case ColorEnum.BlanchedAlmond: return BlanchedAlmond;
+            case ColorEnum.Blue: return Blue;
+            case ColorEnum.BlueViolet: return BlueViolet;
+            case ColorEnum.Brown: return Brown;
+            case ColorEnum.Burlywood: return Burlywood;
+            case ColorEnum.CadetBlue: return CadetBlue;
+            case ColorEnum.Chartreuse: return Chartreuse;
+            case ColorEnum.Chocolate: return Chocolate;
+            case ColorEnum.Coral: return Coral;
+            case ColorEnum.CornflowerBlue: return CornflowerBlue;
+            case ColorEnum.Cornsilk: return Cornsilk;
+            case ColorEnum.Crimson: return Crimson;
+            case ColorEnum.Cyan: return Cyan;
+            case ColorEnum.DarkBlue: return DarkBlue;
+            case ColorEnum.DarkCyan: return DarkCyan;
+            case ColorEnum.DarkGoldenrod: return DarkGoldenrod;
+            case ColorEnum.DarkGray: return DarkGray;
+            case ColorEnum.DarkGreen: return DarkGreen;
+            case ColorEnum.DarkKhaki: return DarkKhaki;
+            case ColorEnum.DarkMagenta: return DarkMagenta;
+            case ColorEnum.DarkOliveGreen: return DarkOliveGreen;
+            case ColorEnum.DarkOrange: return DarkOrange;
+            case ColorEnum.DarkOrchid: return DarkOrchid;
+            case ColorEnum.DarkRed: return DarkRed;
+            case ColorEnum.DarkSalmon: return DarkSalmon;
+            case ColorEnum.DarkSeaGreen: return DarkSeaGreen;
+            case ColorEnum.DarkSlateBlue: return DarkSlateBlue;
+            case ColorEnum.DarkSlateGray: return DarkSlateGray;
+            case ColorEnum.DarkTurquoise: return DarkTurquoise;
+            case ColorEnum.DarkViolet: return DarkViolet;
+            case ColorEnum.DeepPink: return DeepPink;
+            case ColorEnum.DeepSkyBlue: return DeepSkyBlue;
+            case ColorEnum.DimGray: return DimGray;
+            case ColorEnum.DodgerBlue: return DodgerBlue;
+            case ColorEnum.FireBrick: return FireBrick;
+            case ColorEnum.FloralWhite: return FloralWhite;
+            case ColorEnum.ForestGreen: return ForestGreen;
+            case ColorEnum.Fuchsia: return Fuchsia;
+            case ColorEnum.Gainsboro: return Gainsboro;
+            case ColorEnum.GhostWhite: return GhostWhite;
+            case ColorEnum.Gold: return Gold;
+            case ColorEnum.Goldenrod: return Goldenrod;
+            case ColorEnum.Gray: return Gray;
+            case ColorEnum.Green: return Green;
+            case ColorEnum.GreenYellow: return GreenYellow;
+            case ColorEnum.Honeydew: return Honeydew;
+            case ColorEnum.HotPink: return HotPink;
+            case ColorEnum.IndianRed: return IndianRed;
+            case ColorEnum.Indigo: return Indigo;
+            case ColorEnum.Ivory: return Ivory;
+            case ColorEnum.Khaki: return Khaki;
+            case ColorEnum.Lavender: return Lavender;
+            case ColorEnum.Lavenderblush: return Lavenderblush;
+            case ColorEnum.LawnGreen: return LawnGreen;
+            case ColorEnum.LemonChiffon: return LemonChiffon;
+            case ColorEnum.LightBlue: return LightBlue;
+            case ColorEnum.LightCoral: return LightCoral;
+            case ColorEnum.LightCyan: return LightCyan;
+            case ColorEnum.LightGoldenrodYellow: return LightGoldenrodYellow;
+            case ColorEnum.LightGray: return LightGray;
+            case ColorEnum.LightGreen: return LightGreen;
+            case ColorEnum.LightPink: return LightPink;
+            case ColorEnum.LightSalmon: return LightSalmon;
+            case ColorEnum.LightSeaGreen: return LightSeaGreen;
+            case ColorEnum.LightSkyBlue: return LightSkyBlue;
+            case ColorEnum.LightSlateGray: return LightSlateGray;
+            case ColorEnum.LightSteelBlue: return LightSteelBlue;
+            case ColorEnum.LightYellow: return LightYellow;
+            case ColorEnum.Lime: return Lime;
+            case ColorEnum.LimeGreen: return LimeGreen;
+            case ColorEnum.Linen: return Linen;
+            case ColorEnum.Magenta: return Magenta;
+            case ColorEnum.Maroon: return Maroon;
+            case ColorEnum.MediumAquamarine: return MediumAquamarine;
+            case ColorEnum.MediumBlue: return MediumBlue;
+            case ColorEnum.MediumOrchid: return MediumOrchid;
+            case ColorEnum.MediumPurple: return MediumPurple;
+            case ColorEnum.MediumSeaGreen: return MediumSeaGreen;
+            case ColorEnum.MediumSlateBlue: return MediumSlateBlue;
+            case ColorEnum.MediumSpringGreen: return MediumSpringGreen;
+            case ColorEnum.MediumTurquoise: return MediumTurquoise;
+            case ColorEnum.MediumVioletRed: return MediumVioletRed;
+            case ColorEnum.MidnightBlue: return MidnightBlue;
+            case ColorEnum.Mintcream: return Mintcream;
+            case ColorEnum.MistyRose: return MistyRose;
+            case ColorEnum.Moccasin: return Moccasin;
+            case ColorEnum.NavajoWhite: return NavajoWhite;
+            case ColorEnum.Navy: return Navy;
+            case ColorEnum.OldLace: return OldLace;
+            case ColorEnum.Olive: return Olive;
+            case ColorEnum.Olivedrab: return OliveDrab;
+            case ColorEnum.Orange: return Orange;
+            case ColorEnum.OrangeRed: return OrangeRed;
+            case ColorEnum.Orchid: return Orchid;
+            case ColorEnum.PaleGoldenrod: return PaleGoldenrod;
+            case ColorEnum.PaleGreen: return PaleGreen;
+            case ColorEnum.PaleTurquoise: return PaleTurquoise;
+            case ColorEnum.PaleVioletRed: return PaleVioletRed;
+            case ColorEnum.PapayaWhip: return PapayaWhip;
+            case ColorEnum.PeachPuff: return PeachPuff;
+            case ColorEnum.Peru: return Peru;
+            case ColorEnum.Pink: return Pink;
+            case ColorEnum.Plum: return Plum;
+            case ColorEnum.PowderBlue: return PowderBlue;
+            case ColorEnum.Purple: return Purple;
+            case ColorEnum.Red: return Red;
+            case ColorEnum.RosyBrown: return RosyBrown;
+            case ColorEnum.RoyalBlue: return RoyalBlue;
+            case ColorEnum.SaddleBrown: return SaddleBrown;
+            case ColorEnum.Salmon: return Salmon;
+            case ColorEnum.SandyBrown: return SandyBrown;
+            case ColorEnum.SeaGreen: return SeaGreen;
+            case ColorEnum.Seashell: return Seashell;
+            case ColorEnum.Sienna: return Sienna;
+            case ColorEnum.Silver: return Silver;
+            case ColorEnum.SkyBlue: return SkyBlue;
+            case ColorEnum.SlateBlue: return SlateBlue;
+            case ColorEnum.SlateGray: return SlateGray;
+            case ColorEnum.Snow: return Snow;
+            case ColorEnum.SpringGreen: return SpringGreen;
+            case ColorEnum.SteelBlue: return SteelBlue;
+            case ColorEnum.Tan: return Tan;
+            case ColorEnum.Teal: return Teal;
+            case ColorEnum.Thistle: return Thistle;
+            case ColorEnum.Tomato: return Tomato;
+            case ColorEnum.Turquoise: return Turquoise;
+            case ColorEnum.Violet: return Violet;
+            case ColorEnum.Wheat: return Wheat;
+            case ColorEnum.White: return White;
+            case ColorEnum.WhiteSmoke: return WhiteSmoke;
+            case ColorEnum.Yellow: return Yellow;
+            case ColorEnum.YellowGreen: return YellowGreen;
+            default: return Black;
+        }
+    }
 }
