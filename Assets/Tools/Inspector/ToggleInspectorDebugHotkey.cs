@@ -1,43 +1,40 @@
-﻿#if UNITY_EDITOR
+﻿/* 
+ * About:
+ * Adds the ability to Toggle Debug Mode on the current selected Inspector Window
+ * 
+ */
+
+#if UNITY_EDITOR
+
 using System;
 using System.Reflection;
 using UnityEditor;
-using UnityEngine;
-using Object = UnityEngine.Object;
 
-public static class ToggleInspectorDebugHotkey
+public static class ToggleInspectorDebug
 {
     [MenuItem("Tools/Inspector/Toggle Inspector Debug &d")]
-    static void ToggleInspectorDebug()
+    static void ToggleDebug()
     {
-        Type inspectorWindowType = Assembly.GetAssembly(typeof(Editor)).GetType("UnityEditor.InspectorWindow");
+        var focusedWindow = EditorWindow.focusedWindow;
 
-        if (_inspectorWindow == null)
-        {
-            Object[] findObjectsOfTypeAll = Resources.FindObjectsOfTypeAll(inspectorWindowType);
-            _inspectorWindow = (EditorWindow)findObjectsOfTypeAll[0];
-        }
+        if (focusedWindow == null) return;
 
-        if (_inspectorWindow != null && _inspectorWindow.GetType().Name == "InspectorWindow")
-        {
-            FieldInfo inspectorMode = inspectorWindowType.GetField(
-                "m_InspectorMode",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo setModeMethod = inspectorWindowType.GetMethod(
-                "SetMode",
-                BindingFlags.NonPublic | BindingFlags.Instance);
+        var type = Type.GetType(UnityEditorWindow.Inspector);
+        if (focusedWindow.GetType() != type) return;
 
-            if (inspectorMode == null || setModeMethod == null) return;
+        var inspectorMode = type.GetField("m_InspectorMode",
+            BindingFlags.NonPublic | BindingFlags.Instance);
+        var setModeMethod = type.GetMethod("SetMode",
+            BindingFlags.NonPublic | BindingFlags.Instance);
+        if (inspectorMode == null || setModeMethod == null) return;
 
-            InspectorMode mode = (InspectorMode)inspectorMode.GetValue(_inspectorWindow);
-            mode = mode == InspectorMode.Normal ? InspectorMode.Debug : InspectorMode.Normal;
+        var mode = (InspectorMode)inspectorMode.GetValue(focusedWindow);
+        if (mode == InspectorMode.Normal) mode = InspectorMode.Debug;
+        else if (mode == InspectorMode.Debug || mode == InspectorMode.DebugInternal) mode = InspectorMode.Normal;
+        setModeMethod.Invoke(focusedWindow, new object[] { mode });
 
-            setModeMethod.Invoke(_inspectorWindow, new object[] { mode });
-            _inspectorWindow.Repaint();
-        }
+        focusedWindow.Repaint();
     }
-
-    private static EditorWindow _inspectorWindow;
 }
 
 #endif

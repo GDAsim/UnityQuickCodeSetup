@@ -1,43 +1,34 @@
-﻿#if UNITY_EDITOR
-// ---------------------------------------------------------------------------- 
-// Author: Abomb
-// https://forum.unity.com/threads/shortcut-key-for-lock-inspector.95815/#post-1056603
-// Date:   09/10/2012
-// ----------------------------------------------------------------------------
+﻿/* 
+ * About:
+ * Adds the ability to Toggle Lock on the current selected Inspector Window
+ * 
+ */
+
+#if UNITY_EDITOR
 
 using System;
-using System.Reflection;
 using UnityEditor;
-using UnityEngine;
-using Object = UnityEngine.Object;
 
-
-public static class ToggleInspectorLockHotkey
+public static class ToggleInspectorLock
 {
     [MenuItem("Tools/Inspector/Toggle Inspector Lock &q")]
-    static void ToggleInspectorLock()
+    static void ToggleLock()
     {
-        Type inspectorWindowType = Assembly.GetAssembly(typeof(Editor)).GetType("UnityEditor.InspectorWindow");
+        var focusedWindow = EditorWindow.focusedWindow;
 
-        if (_inspectorWindow == null)
-        {
-            Object[] findObjectsOfTypeAll = Resources.FindObjectsOfTypeAll(inspectorWindowType);
-            _inspectorWindow = (EditorWindow)findObjectsOfTypeAll[0];
-        }
+        if (focusedWindow == null) return;
 
-        if (_inspectorWindow != null && _inspectorWindow.GetType().Name == "InspectorWindow")
-        {
-            PropertyInfo isLockedPropertyInfo = inspectorWindowType.GetProperty("isLocked");
-            if (isLockedPropertyInfo == null) return;
+        var type = Type.GetType(UnityEditorWindow.Inspector);
+        if (focusedWindow.GetType() != type) return;
 
-            bool value = (bool)isLockedPropertyInfo.GetValue(_inspectorWindow, null);
-            isLockedPropertyInfo.SetValue(_inspectorWindow, !value, null);
+        var lockPropertyInfo = type.GetProperty("isLocked");
+        if (lockPropertyInfo == null) return;
 
-            _inspectorWindow.Repaint();
-        }
+        bool toggleValue = (bool)lockPropertyInfo.GetValue(focusedWindow, null);
+        lockPropertyInfo.SetValue(focusedWindow, !toggleValue, null);
+
+        focusedWindow.Repaint();
     }
-
-    private static EditorWindow _inspectorWindow;
 }
 
 #endif
